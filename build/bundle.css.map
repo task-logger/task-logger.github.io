@@ -1,0 +1,16 @@
+{
+  "version": 3,
+  "file": "bundle.css",
+  "sources": [
+    "..\\..\\Container.svelte",
+    "..\\..\\Input.svelte",
+    "..\\..\\Page.svelte"
+  ],
+  "sourcesContent": [
+    "<div>\r\n\t<slot></slot>\r\n</div>\r\n\r\n<style>\r\n\tdiv {\r\n\t\tbackground-color: #dddddd;\r\n\t\tmargin: 20px 50px 0;\r\n\t\tborder-radius: 10px;\r\n\t\tborder: 1px solid black;\r\n\t\tpadding: 50px;\r\n\t\talign-content: center;\r\n\t\ttext-align: center;\r\n\t}\r\n</style>\r\n",
+    "<script>\r\n\tlet task = \"\";\r\n\r\n\tfunction handleKeypress(event) {\r\n\t\tif (event.key === \"Enter\") {\r\n\t\t\t// TODO Handle Enter\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n<input\r\n\ttype=\"text\"\r\n\tplaceholder=\"Start task\"\r\n\tbind:value=\"{task}\"\r\n\ton:keypress={handleKeypress}\r\n/>\r\n\r\n<style>\r\n\tinput {\r\n\t\twidth: 80%;\r\n\t}\r\n</style>\r\n",
+    "<script>\r\n\timport Input from \"./Input.svelte\";\r\n\timport Container from \"./Container.svelte\";\r\n</script>\r\n\r\n<Container>\r\n\t<h2>Hello World</h2>\r\n\t<Input/>\r\n</Container>\r\n\r\n<style>\r\n\th2 {\r\n\t\tcolor: red;\r\n\t}\r\n</style>\r\n"
+  ],
+  "names": [],
+  "mappings": "AAKC,GAAG,cAAC,CAAC,AACJ,gBAAgB,CAAE,OAAO,CACzB,MAAM,CAAE,IAAI,CAAC,IAAI,CAAC,CAAC,CACnB,aAAa,CAAE,IAAI,CACnB,MAAM,CAAE,GAAG,CAAC,KAAK,CAAC,KAAK,CACvB,OAAO,CAAE,IAAI,CACb,aAAa,CAAE,MAAM,CACrB,UAAU,CAAE,MAAM,AACnB,CAAC;ACKD,KAAK,cAAC,CAAC,AACN,KAAK,CAAE,GAAG,AACX,CAAC;ACTD,EAAE,cAAC,CAAC,AACH,KAAK,CAAE,GAAG,AACX,CAAC"
+}
