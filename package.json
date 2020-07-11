@@ -2,7 +2,7 @@
   "name": "task-logger.github.io",
   "version": "1.0.0",
   "description": "Log your tasks in a day properly",
-  "main": "index.js",
+  "main": "public/index.html",
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
