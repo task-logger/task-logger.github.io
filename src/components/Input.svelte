@@ -1,7 +1,8 @@
-<script>
-	import { setObj } from "../helper/localStorage";
-	import { getObj } from "../helper/localStorage";
-	import { tasks_store } from "../store/store";
+<script lang="ts">
+	import { setObj } from "../helpers/StorageHelper";
+	import { getObj } from "../helpers/StorageHelper";
+	import { tasks_store } from "../store/Store";
+	import ClearButton from "./ClearButton.svelte";
 
 	let task = "";
 
@@ -18,11 +19,6 @@
 			task = "";
 		}
 	}
-
-	function handleClear() {
-		setObj("tasks", []);
-		tasks_store.update(() => []);
-	}
 </script>
 
 <input
@@ -31,11 +27,8 @@
 	bind:value={task}
 	on:keypress={handleKeypress}
 />
-<button
-	on:click={handleClear}
->
-	Clear
-</button>
+
+<ClearButton/>
 
 <style>
 	input {

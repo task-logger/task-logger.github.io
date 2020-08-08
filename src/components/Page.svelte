@@ -1,9 +1,9 @@
-<script>
+<script lang="ts">
 	import Input from "./Input.svelte";
 	import Container from "./Container.svelte";
 	import { onMount, onDestroy } from "svelte";
-	import { getObj } from "../helper/localStorage";
-	import { tasks_store } from "../store/store";
+	import { getObj } from "../helpers/StorageHelper";
+	import { tasks_store } from "../store/Store";
 
 	let tasks;
 	const unsubscribe = tasks_store.subscribe(newValue => {
