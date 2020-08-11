@@ -10,7 +10,6 @@
     "start": "sirv public",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d public -b master",
-    "typescript": "tsc",
     "test:ts": "svelte-check"
   },
   "repository": {

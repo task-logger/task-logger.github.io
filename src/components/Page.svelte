@@ -1,22 +1,8 @@
 <script lang="ts">
 	import Input from "./Input.svelte";
 	import Container from "./Container.svelte";
-	import { onMount, onDestroy } from "svelte";
-	import { getObj } from "../helpers/StorageHelper";
-	import { tasks_store } from "../store/Store";
+	import TaskViewContainer from "./TaskViewContainer.svelte";
 
-	let tasks;
-	const unsubscribe = tasks_store.subscribe(newValue => {
-		tasks = newValue;
-	});
-
-	// TODO Load initial tasks
-	onMount(() => {
-		tasks = getObj("tasks");
-	});
-	onDestroy(() => {
-		unsubscribe();
-	});
 </script>
 
 <Container>
@@ -24,13 +10,7 @@
 	<Input/>
 	<hr/>
 
-	{#if tasks && tasks.length}
-		{#each tasks as task}
-			<div>{task}</div>
-		{/each}
-		{:else}
-		<div>There is no available task!</div>
-	{/if}
+	<TaskViewContainer/>
 </Container>
 
 <style>

@@ -1,5 +1,11 @@
-export interface ITask {
-	name: string;
+export interface ITasks {
+	current?: string;
+	tasks: {
+		[taskName: string]: ITaskInterval[]
+	}
+}
+
+export interface ITaskInterval {
 	start: number;
-	end: number;
+	end?: number;
 }

@@ -1,15 +1,7 @@
 <script lang="ts">
-	import { setObj } from "../helpers/StorageHelper";
 	import { Store } from "../store/Store";
 
-	const handleClear = () => {
-		setObj("tasks", []);
-		Store.Tasks.update(() => []);
-	}
+	const { Tasks } = Store;
 </script>
 
-<button
-		on:click={handleClear}
->
-	Clear
-</button>
+<button on:click={Tasks.clear}>Clear</button>
