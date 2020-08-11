@@ -1,4 +1,4 @@
-import { readable, writable } from "svelte/store";
+import { derived, writable } from "svelte/store";
 import { ITasks } from "../types/Task";
 import { getObj, setObj } from "../helpers/StorageHelper";
 import { StorageKeys } from "../constants/Constants";
@@ -46,16 +46,5 @@ export namespace Store {
 	};
 	export const Tasks = createTasksStore();
 
-	const createClockStore = () => {
-		const { subscribe } = readable(Date.now(), set => {
-			const interval = window.setInterval(() => {
-				set(Date.now());
-			}, 1000);
-			return () => window.clearInterval(interval);
-		});
-		return {
-			subscribe
-		}
-	}
-	export const Clock = createClockStore();
+	export const currentTask = derived(Tasks, $Tasks => $Tasks.current);
 }

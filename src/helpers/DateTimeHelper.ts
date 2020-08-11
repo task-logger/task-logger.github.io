@@ -7,6 +7,12 @@ export const getDayString = (date: Date | number) => {
 	return `${pad2(date.getDate())}-${pad2(date.getMonth())}-${pad2(date.getFullYear())}`;
 };
 
+const formatter = new Intl.DateTimeFormat("en-GB");
+
+export const formatDate = (date: Date) => {
+	return formatter.format(date);
+};
+
 const pad2 = (num: number) => (num % 100).toString().padStart(2, "0");
 
 export const getTimeStringFromNumber = (time: number): string => {
@@ -15,7 +21,7 @@ export const getTimeStringFromNumber = (time: number): string => {
 	time %= 60 * 60;
 	const minutes = Math.floor(time / 60);
 	const seconds = Math.floor(time % 60);
-	return `${hours > 0 ? pad2(hours) + ":" : ""}${minutes > 0 ? pad2(minutes) + ":" : ""}${pad2(seconds)}`;
+	return `${pad2(hours)}:${pad2(minutes)}:${pad2(seconds)}`;
 };
 
 export const getTimeDiff = ({ start, end }: ITaskInterval): number => {
@@ -30,8 +36,8 @@ export const getTotalWorkingTime = (works: ITaskInterval[]): number => {
 		total += getTimeDiff(interval);
 		return total;
 	}, 0);
-}
+};
 
 export const getTotalWorkingTimeStr = (works: ITaskInterval[]): string => {
 	return getTimeStringFromNumber(getTotalWorkingTime(works));
-}
+};

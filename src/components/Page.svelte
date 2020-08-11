@@ -2,11 +2,11 @@
 	import Input from "./Input.svelte";
 	import Container from "./Container.svelte";
 	import TaskViewContainer from "./TaskViewContainer.svelte";
-
+	import { formatDate } from "../helpers/DateTimeHelper";
 </script>
 
 <Container>
-	<h2>Task Logger</h2>
+	<h2>{formatDate(new Date())}</h2>
 	<Input/>
 	<hr/>
 

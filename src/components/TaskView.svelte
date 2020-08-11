@@ -1,47 +1,40 @@
-<script context="module">
-	let running;
-</script>
-
 <script lang="ts">
 	import { getTotalWorkingTimeStr } from "../helpers/DateTimeHelper";
-	import { afterUpdate } from "svelte"
+	import { afterUpdate } from "svelte";
+	import { Store } from "../store/Store";
+
+	const { currentTask } = Store;
 
 	export let works;
 	export let taskName;
-	export let isCurrent;
 
 	let workedTime = getTotalWorkingTimeStr(works);
 	let clockInterval = 0;
 
+	const startInterval = () => {
+		clockInterval = ($currentTask === taskName) && setInterval(() => {
+			workedTime = getTotalWorkingTimeStr(works);
+		}, 1000);
+	}
 	const clearRunningInterval = () => {
-		clearInterval(running);
-		running = clockInterval;
+		clearInterval(clockInterval);
+		clockInterval = 0;
 	}
 
-	clockInterval = isCurrent && setInterval(() => {
-		workedTime = getTotalWorkingTimeStr(works);
-		console.log(workedTime);
-		if (running && running !== clockInterval) {
-			clearRunningInterval();
-		}
-	}, 1000);
-	running = clockInterval;
-
+	startInterval();
 	afterUpdate(() => {
-		if (isCurrent && running !== clockInterval) {
+		if ($currentTask !== taskName) {
 			clearRunningInterval();
-			clockInterval = isCurrent && setInterval(() => {
-				workedTime = getTotalWorkingTimeStr(works);
-				console.log(workedTime);
-				if (running && running !== clockInterval) {
-					clearRunningInterval();
-				}
-			}, 1000);
+		} else {
+			if (clockInterval === 0) {
+				startInterval();
+			}
 		}
+
 	})
 </script>
 
-<tr class:current={isCurrent}>
+<tr class:current={$currentTask === taskName}>
 	<td>{taskName}</td>
 	<td>{workedTime}</td>
 </tr>

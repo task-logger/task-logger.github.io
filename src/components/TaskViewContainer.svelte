@@ -21,12 +21,12 @@
 		<thead>
 			<tr>
 				<th>Task name</th>
-				<th>Worked Time</th>
+				<th>Worked Time (hh:mm:ss)</th>
 			</tr>
 		</thead>
 		<tbody>
 			{#each taskNames as taskName}
-				<TaskView isCurrent={taskName === current} works={allTasks.tasks[taskName]} taskName={taskName}/>
+				<TaskView works={allTasks.tasks[taskName]} taskName={taskName}/>
 			{/each}
 		</tbody>
 	</table>
